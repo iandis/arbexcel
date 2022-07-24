@@ -42,9 +42,13 @@ Translation parseExcel({
   final List<Data?> columns = sheet.rows[headerRow];
   for (int i = valueRow; i < sheet.rows.length; i++) {
     final List<Data?> row = sheet.rows[i];
+    final String? name = row[_kColName]?.value;
+    if (name?.trim().isNotEmpty != true) continue;
+
+    final String? description = row[_kColDescription]?.value;
     final ARBItem item = ARBItem(
-      name: row[_kColName]?.value,
-      description: row[_kColDescription]?.value,
+      name: name!,
+      description: description,
       translations: {},
     );
 
