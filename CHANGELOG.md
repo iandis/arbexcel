@@ -1,3 +1,8 @@
+## 0.0.6
+
+- Rename bin name to `arbxcel`
+- Add `executables` to pubspec.yaml 
+
 ## 0.0.5
 
 - Add validation to each value on `name` column to check for not empty
