@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 
 /// To match all args from a text.
-final _kRegArgs = RegExp(r'{(\w+)}');
+final RegExp _kRegArgs = RegExp(r'{(\w+)}');
 
 /// Parses .arb files to [Translation].
 /// The [filename] is the main language.
@@ -13,16 +13,16 @@ Translation parseARB(String filename) {
 
 /// Writes [Translation] to .arb files.
 void writeARB(String filename, Translation data) {
-  for (var i = 0; i < data.languages.length; i++) {
-    final lang = data.languages[i];
-    final isDefault = i == 0;
-    final f = File('${withoutExtension(filename)}_$lang.arb');
+  for (int i = 0; i < data.languages.length; i++) {
+    final String lang = data.languages[i];
+    final bool isDefault = i == 0;
+    final File f = File('${withoutExtension(filename)}_$lang.arb');
 
-    var buf = [];
+    List<String> buf = [];
     for (final item in data.items) {
-      final data = item.toJSON(lang, isDefault);
+      final String? data = item.toJSON(lang, isDefault);
       if (data != null) {
-        buf.add(item.toJSON(lang, isDefault));
+        buf.add(data);
       }
     }
 
@@ -35,9 +35,9 @@ void writeARB(String filename, Translation data) {
 class ARBItem {
   static List<String> getArgs(String text) {
     final List<String> args = [];
-    final matches = _kRegArgs.allMatches(text);
-    for (final m in matches) {
-      final arg = m.group(1);
+    final Iterable<RegExpMatch> matches = _kRegArgs.allMatches(text);
+    for (final RegExpMatch m in matches) {
+      final String? arg = m.group(1);
       if (arg != null) {
         args.add(arg);
       }
@@ -46,10 +46,10 @@ class ARBItem {
     return args;
   }
 
-  ARBItem({
+  const ARBItem({
     required this.name,
     this.description,
-    this.translations = const {},
+    this.translations = const <String, String>{},
   });
 
   final String name;
@@ -58,13 +58,14 @@ class ARBItem {
 
   /// Serialize in JSON.
   String? toJSON(String lang, [bool isDefault = false]) {
-    final value = translations[lang];
+    final String? value = translations[lang];
     if (value == null || value.isEmpty) return null;
 
-    final args = getArgs(value);
-    final hasMetadata = isDefault && (args.isNotEmpty || description != null);
+    final List<String> args = getArgs(value);
+    final bool hasMetadata =
+        isDefault && (args.isNotEmpty || description != null);
 
-    final List<String> buf = [];
+    final List<String> buf = <String>[];
 
     if (hasMetadata) {
       buf.add('  "$name": "$value",');
@@ -99,7 +100,10 @@ class ARBItem {
 
 /// Describes all arb records.
 class Translation {
-  Translation({this.languages = const [], this.items = const []});
+  const Translation({
+    this.languages = const <String>[],
+    this.items = const <ARBItem>[],
+  });
 
   final List<String> languages;
   final List<ARBItem> items;

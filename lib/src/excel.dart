@@ -1,22 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:arbexcel/src/assets.dart';
 import 'package:excel/excel.dart';
 
 import 'arb.dart';
 
-const _kRowHeader = 0;
-const _kRowValue = 1;
-const _kColName = 0;
-const _kColDescription = 1;
-const _kColValue = 2;
+const int _kRowHeader = 0;
+const int _kRowValue = 1;
+const int _kColName = 0;
+const int _kColDescription = 1;
+const int _kColValue = 2;
 
 /// Create a new Excel template file.
 ///
 /// Embedded data will be packed via `template.dart`.
 void newTemplate(String filename) {
-  final buf = base64Decode(kTemplate);
+  final Uint8List buf = base64Decode(kTemplate);
   File(filename).writeAsBytesSync(buf);
 }
 
@@ -30,18 +31,18 @@ Translation parseExcel({
   int headerRow = _kRowHeader,
   int valueRow = _kRowValue,
 }) {
-  final buf = File(filename).readAsBytesSync();
-  final excel = Excel.decodeBytes(buf);
-  final sheet = excel.sheets[sheetname];
+  final Uint8List buf = File(filename).readAsBytesSync();
+  final Excel excel = Excel.decodeBytes(buf);
+  final Sheet? sheet = excel.sheets[sheetname];
   if (sheet == null) {
-    return Translation();
+    return const Translation();
   }
 
-  final List<ARBItem> items = [];
-  final columns = sheet.rows[headerRow];
+  final List<ARBItem> items = <ARBItem>[];
+  final List<Data?> columns = sheet.rows[headerRow];
   for (int i = valueRow; i < sheet.rows.length; i++) {
-    final row = sheet.rows[i];
-    final item = ARBItem(
+    final List<Data?> row = sheet.rows[i];
+    final ARBItem item = ARBItem(
       name: row[_kColName]?.value,
       description: row[_kColDescription]?.value,
       translations: {},
@@ -55,7 +56,7 @@ Translation parseExcel({
     items.add(item);
   }
 
-  final languages = columns
+  final List<String> languages = columns
       .where((e) => e != null && e.colIndex >= _kColValue)
       .map<String>((e) => e?.value)
       .toList();

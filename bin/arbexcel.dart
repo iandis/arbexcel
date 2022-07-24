@@ -8,14 +8,14 @@ import 'package:arbexcel/arbexcel.dart';
 const _kVersion = '0.0.1';
 
 void main(List<String> args) {
-  final parse = ArgParser();
+  final ArgParser parse = ArgParser();
   parse.addFlag('new',
       abbr: 'n', defaultsTo: false, help: 'New translation sheet');
   parse.addFlag('arb',
       abbr: 'a', defaultsTo: false, help: 'Export to ARB files');
   parse.addFlag('excel',
       abbr: 'e', defaultsTo: false, help: 'Import ARB files to sheet');
-  final flags = parse.parse(args);
+  final ArgResults flags = parse.parse(args);
 
   // Not enough args
   if (args.length < 2) {
@@ -23,7 +23,7 @@ void main(List<String> args) {
     exit(1);
   }
 
-  final filename = flags.rest.first;
+  final String filename = flags.rest.first;
 
   if (flags['new']) {
     stdout.writeln('Create new Excel file for translation: $filename');
