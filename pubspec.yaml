@@ -1,6 +1,6 @@
 name: arbexcel
 description: Generates ARB files from an Excel file or create an Excel file from ARB files.
-version: 0.0.3-dev
+version: 0.0.4
 repository: https://github.com/iandis/arbexcel
 issue_tracker: https://github.com/iandis/arbexcel/issues
 

@@ -1,3 +1,11 @@
+## 0.0.4
+
+- Changed package name to `arbexcel`
+- Updated example file
+- Updated README
+- Updated LICENSE
+- Removed `category` column
+
 ## 0.0.3-dev
 
 - Add condition formats to the template

@@ -5,7 +5,7 @@ import 'package:path/path.dart';
 
 import 'package:arbexcel/arbexcel.dart';
 
-const _kVersion = '0.0.1';
+const _kVersion = '0.0.2';
 
 void main(List<String> args) {
   final ArgParser parse = ArgParser();
