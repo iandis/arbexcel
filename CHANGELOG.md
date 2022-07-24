@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Add validation to each value on `name` column to check for not empty
+
 ## 0.0.4
 
 - Changed package name to `arbxcel`
