@@ -47,14 +47,12 @@ class ARBItem {
   }
 
   ARBItem({
-    this.category,
-    required this.text,
+    required this.name,
     this.description,
     this.translations = const {},
   });
 
-  final String? category;
-  final String text;
+  final String name;
   final String? description;
   final Map<String, String> translations;
 
@@ -69,8 +67,8 @@ class ARBItem {
     final List<String> buf = [];
 
     if (hasMetadata) {
-      buf.add('  "$text": "$value",');
-      buf.add('  "@$text": {');
+      buf.add('  "$name": "$value",');
+      buf.add('  "@$name": {');
 
       if (args.isEmpty) {
         if (description != null) {
@@ -92,7 +90,7 @@ class ARBItem {
 
       buf.add('  }');
     } else {
-      buf.add('  "$text": "$value"');
+      buf.add('  "$name": "$value"');
     }
 
     return buf.join('\n');

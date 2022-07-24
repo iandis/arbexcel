@@ -8,10 +8,9 @@ import 'arb.dart';
 
 const _kRowHeader = 0;
 const _kRowValue = 1;
-const _kColCategory = 0;
-const _kColText = 1;
-const _kColDescription = 2;
-const _kColValue = 3;
+const _kColName = 0;
+const _kColDescription = 1;
+const _kColValue = 2;
 
 /// Create a new Excel template file.
 ///
@@ -43,8 +42,7 @@ Translation parseExcel({
   for (int i = valueRow; i < sheet.rows.length; i++) {
     final row = sheet.rows[i];
     final item = ARBItem(
-      category: row[_kColCategory]?.value,
-      text: row[_kColText]?.value,
+      name: row[_kColName]?.value,
       description: row[_kColDescription]?.value,
       translations: {},
     );
