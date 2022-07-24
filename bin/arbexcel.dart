@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart';
 
-import 'package:arb_excel/arb_excel.dart';
+import 'package:arbexcel/arbexcel.dart';
 
 const _kVersion = '0.0.1';
 
