@@ -1,6 +1,6 @@
 ## 0.0.4
 
-- Changed package name to `arbexcel`
+- Changed package name to `arbxcel`
 - Updated example file
 - Updated README
 - Updated LICENSE

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:arbexcel/src/assets.dart';
+import 'package:arbxcel/src/assets.dart';
 import 'package:excel/excel.dart';
 
 import 'arb.dart';
