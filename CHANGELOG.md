@@ -1,7 +1,12 @@
+## 0.0.7
+
+- Add predefined placeholder
+- Add excel10n for flutter projects
+
 ## 0.0.6
 
 - Rename bin name to `arbxcel`
-- Add `executables` to pubspec.yaml 
+- Add `executables` to pubspec.yaml
 
 ## 0.0.5
 
