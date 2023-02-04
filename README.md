@@ -75,14 +75,26 @@ If you have multiple same placeholders, you can utilize the predefined placehold
 **Note**: each key can **ONLY** contain alphanumeric (a-Z, 0-9) and underscores ("\_")
 
 Example:
-| key | en | id |
-|-------|-----------------------------|-----------------------------|
-| date1 | "DateTime", "format": "yMd" | "DateTime", "format": "dMy" |
+
+<table>
+  <thead>
+    <tr><th>key</th><th>en</th><th>id</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>date1</td><td>"DateTime", "format": "yMd"</td><td>"DateTime", "format": "dMy"</td></tr>
+  </tbody>
+</table>
 
 To use it on the main sheet:
-| name | description | placeholders | en | id |
-|-----------|------------------------|----------------------------|-----------------|---------------------------|
-| payAtDate | Text for pay with date | {"date": {"type": $date1}} | Pay when {date} | Bayar pada tanggal {date} |
+
+<table>
+  <thead>
+    <tr><th>name</th><th>description</th><th>placeholders</th><th>en</th><th>id</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>payAtDate</td><td>Text for pay with date</td><td>{"date": {"type": $date1}}</td><td>Pay when {date}</td><td>Bayar pada tanggal {date}</td></tr>
+  </tbody>
+</table>
 
 Generating will produce:
 
