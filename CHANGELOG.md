@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Fix table on README
+
 ## 0.0.7
 
 - Add predefined placeholder
