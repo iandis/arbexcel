@@ -7,7 +7,7 @@ import 'package:path/path.dart';
 /// To match all args from a text.
 final RegExp _kRegArgs = RegExp(r'{(\w+)}');
 
-final RegExp _kRegSelect = RegExp(r'\s*\{([\w\s,]*),\s*select\s*,.*\}');
+final RegExp _kRegSelect = RegExp(r'{(\w+),\s*select\s*,.*}}');
 
 final JsonEncoder _prettyJson = JsonEncoder.withIndent('  ');
 
