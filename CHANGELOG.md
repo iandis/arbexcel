@@ -1,3 +1,10 @@
+## 0.0.9
+
+- Fix regexp for finding `select` placeholders
+- Fix encoding description
+- Fix checking template arb file
+- Bump `excel` to 2.0.1
+
 ## 0.0.8
 
 - Fix table on README
