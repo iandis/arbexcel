@@ -95,7 +95,7 @@ class ARBItem {
       buf.writeln('  "@$name": {');
 
       if (description != null) {
-        buf.write('    "description": "$description"');
+        buf.write('    "description": ${jsonEncode(description)}');
       }
 
       String? placeholders = this.placeholders;
