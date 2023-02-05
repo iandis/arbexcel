@@ -80,7 +80,7 @@ Future<void> main(List<String> args) async {
   checkPath(path);
   checkExcelSourceFile('$path/$excelSourceFile');
   checkExcelSheetName(excelMainSheetName);
-  checkTemplateArbFile('$path/$templateArbFile');
+  checkTemplateArbFileArg(templateArbFile);
   checkOutputLocalizationFile(outputLocalizationFile);
   checkFlutterPath(flutterPath);
 
@@ -92,6 +92,7 @@ Future<void> main(List<String> args) async {
     excelMainSheetName,
     excelPlaceholderSheetName,
   );
+  checkTemplateArbFileExists('$path/$templateArbFile');
   print('Running "flutter gen-l10n"...');
   await runFlutterGenL10n(
     flutterPath,
@@ -141,12 +142,14 @@ void checkExcelSheetName(String excelSheetName) {
   }
 }
 
-void checkTemplateArbFile(String templateArbFile) {
+void checkTemplateArbFileArg(String templateArbFile) {
   if (templateArbFile.isEmpty) {
     print('Template ARB file cannot be empty');
     exit(1);
   }
+}
 
+void checkTemplateArbFileExists(String templateArbFile) {
   if (!File(templateArbFile).existsSync()) {
     print('Template ARB file not found: $templateArbFile');
     exit(1);
