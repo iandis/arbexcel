@@ -46,22 +46,22 @@ Translation parseExcel({
   final List<Data?> columns = sheetRows[headerRow];
   for (int i = valueRow; i < sheetRows.length; i++) {
     final List<Data?> row = sheetRows[i];
-    final String? name = row[_kColName]?.value;
-    if (name?.trim().isNotEmpty != true) continue;
+    final String name = row[_kColName]?.value?.toString() ?? '';
+    if (name.trim().isEmpty) continue;
 
-    final String? description = row[_kColDescription]?.value;
-    final String? placeholders = row[_kColPlaceholders]?.value;
+    final String? description = row[_kColDescription]?.value?.toString();
+    final String? placeholders = row[_kColPlaceholders]?.value?.toString();
     final Map<String, String> translations = <String, String>{};
     final ARBItem item = ARBItem(
-      name: name!,
+      name: name,
       description: description,
       placeholders: placeholders,
       translations: translations,
     );
 
     for (int i = _kColValue; i < sheet.maxCols; i++) {
-      final lang = columns[i]?.value ?? i.toString();
-      translations[lang] = row[i]?.value ?? '';
+      final String lang = columns[i]?.value?.toString() ?? '';
+      translations[lang] = row[i]?.value?.toString() ?? '';
     }
 
     items.add(item);
@@ -69,7 +69,7 @@ Translation parseExcel({
 
   final List<String> languages = columns
       .where((Data? e) => e != null && e.colIndex >= _kColValue)
-      .map<String>((Data? e) => e?.value)
+      .map<String>((Data? e) => e?.value?.toString() ?? '')
       .toList();
   final PredefinedPlaceholderTable table = getPredefinedPlaceholders(
     placeholderSheetname: placeholderSheetname,
