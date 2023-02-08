@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Support `SharedString` on predefined placeholders
+
 ## 0.0.9
 
 - Fix regexp for finding `select` placeholders
