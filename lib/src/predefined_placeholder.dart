@@ -60,7 +60,7 @@ Map<String, Map<String, String>> getPredefinedPlaceholders({
   final List<Data?> headerRows = sheetRows[_kRowHeader];
   for (int i = _kRowValue; i < sheetRows.length; i++) {
     final List<Data?> rows = sheetRows[i];
-    final String key = (rows[_kColKey]?.value as String?)?.trim() ?? '';
+    final String key = (rows[_kColKey]?.value?.toString())?.trim() ?? '';
     if (key.isEmpty) {
       throw FormatException('Key is empty at row ${i + 1}');
     }
@@ -74,8 +74,8 @@ Map<String, Map<String, String>> getPredefinedPlaceholders({
 
     final Map<String, String> values = <String, String>{};
     for (int vi = 1; vi < rows.length; vi++) {
-      final String langCode = (headerRows[vi]?.value as String?)?.trim() ?? '';
-      final String value = (rows[vi]?.value as String?)?.trim() ?? '';
+      final String langCode = (headerRows[vi]?.value?.toString())?.trim() ?? '';
+      final String value = (rows[vi]?.value?.toString())?.trim() ?? '';
       if (langCode.isEmpty) {
         print('No language code at column ${vi + 1}\nIgnoring...');
         continue;
